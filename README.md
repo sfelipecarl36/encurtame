@@ -2,7 +2,7 @@
 
 # Encurtame
 
-[Link Encurtador: EncurtaMe]{https://encurta.firebaseapp.com}
+https://encurta.firebaseapp.com
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.0.
 
