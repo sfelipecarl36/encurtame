@@ -1,25 +1,37 @@
 <main>
 
+  <img src="../../assets/logoEncurtame.png" alt="logo">
+
+  <h1>Digite abaixo o endereço a ser encurtado</h1>
+
   <input
     id="longUrl" 
     name="longUrl"
     placeholder="Digite a sua URL"
+    [(ngModel)]="longUrl"
+    (keyup.enter)="focoProx()"
+    maxlength="600"
   />
 
   <input
     id="shortUrl" 
     name="shortUrl"
     placeholder="Apelido da URL"
+    [(ngModel)]="shortUrl"
+    (keyup.enter)="encurtaURL()"
+    maxlength="35"
   />
 
-<div class="card-container">
+  <h2 (click)="copyUrl()" *ngIf="urlGerada.length">{{urlGerada}}</h2>
+  <h3 *ngIf="message.length">{{message}}</h3>
 
-    <a class="card" target="_blank" rel="noopener" href="https://angular.io/tutorial">
+<div class="card-container">
+    <div (click)="encurtaURL()" [ngClass]="{disabled: canShort()}" class="card" rel="noopener">
       <span>Encurtar URL</span>
-    </a>
-    <a class="card" target="_blank" rel="noopener" href="https://angular.io/tutorial">
+    </div>
+    <div class="card" (click)="copyUrl()" [ngClass]="{disabled: urlGerada==''}" rel="noopener">
       <span>Copiar URL</span>
-    </a>
+    </div>
 </div>
 
 </main>
