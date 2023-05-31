@@ -14,6 +14,7 @@ export class ContentComponent {
   shortUrl: String = ''
   urls: any;
   urlGerada: string = ''
+  chavePix: string = '7b6de52d-fffd-41c6-a24f-a4f8bf17232b'
 
   loading: boolean = false
 
@@ -107,6 +108,12 @@ export class ContentComponent {
       console.log('Carregando...')
     }
 
+  }
+
+  copyPix() {    
+      navigator.clipboard.writeText(this.chavePix).then(() => {
+        alert("Chave Pix copiada!");
+      })
   }
 
   copyUrl() {
