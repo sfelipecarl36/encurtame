@@ -1,8 +1,8 @@
 ![](encurtame.png)
 
-# Encurtame
+# Encurta.xyz
 
-https://encurta.firebaseapp.com
+https://encurta.xyz
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.0.
 
