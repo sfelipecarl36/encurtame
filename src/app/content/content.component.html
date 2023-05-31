@@ -1,6 +1,6 @@
 <main>
 
-  <img src="../../assets/logoEncurtame.png" alt="logo">
+  <img class="logo" src="../../assets/logoEncurtame.png" alt="logo">
 
   <h1>Digite abaixo o endereço a ser encurtado</h1>
 
@@ -17,6 +17,7 @@
     id="shortUrl" 
     name="shortUrl"
     placeholder="Apelido da URL"
+    ng-pattern="/^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/"
     [(ngModel)]="shortUrl"
     (keyup.enter)="encurtaURL()"
     maxlength="35"
@@ -25,13 +26,18 @@
   <h2 (click)="copyUrl()" *ngIf="urlGerada.length">{{urlGerada}}</h2>
   <h3 *ngIf="message.length">{{message}}</h3>
 
-<div class="card-container">
-    <div (click)="encurtaURL()" [ngClass]="{disabled: canShort()}" class="card" rel="noopener">
-      <span>Encurtar URL</span>
-    </div>
-    <div class="card" (click)="copyUrl()" [ngClass]="{disabled: urlGerada==''}" rel="noopener">
-      <span>Copiar URL</span>
-    </div>
-</div>
+  <div class="card-container">
+      <div (click)="encurtaURL()" [ngClass]="{disabled: canShort()}" class="card" rel="noopener">
+        <span>Encurtar URL</span>
+      </div>
+      <div class="card" (click)="copyUrl()" [ngClass]="{disabled: urlGerada==''}" rel="noopener">
+        <span>Copiar URL</span>
+      </div>
+  </div>
+
+  <br><br>
+
+  <h5>Ajude o projeto a se manter, contribua :D</h5>
+  <img class="qrcode" src="../../assets/qrcode.png" alt="qr-code"/>
 
 </main>

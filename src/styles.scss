@@ -2,6 +2,19 @@
     font-family: 'Arial', 'Helvetica';
 }
 
+html, body {
+  overflow-x: hidden;
+}
+
+#particles-js {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+
 input {
     background: #fff;
     border-radius: 15px;

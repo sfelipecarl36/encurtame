@@ -8,10 +8,15 @@ main {
     justify-content: center;
     min-height: 50%;
 
-    img {
+    img.logo {
       width: 180px;
       margin: 20px auto;
       margin-bottom: 15px;
+    }
+
+    img.qrcode {
+      width: 200px;
+      margin: 0px auto;
     }
   }
 

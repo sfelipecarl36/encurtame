@@ -22,12 +22,20 @@ export class ContentComponent {
   ) {
   }
 
+  checkChar(): boolean {
+    return true
+  }
+
+  regexShort(str: string) {
+    return /^[A-Za-z0-9]*$/.test(str);
+  }
+
   focoProx() {
     document.getElementById('shortUrl')?.focus();
   }
 
   canShort(): boolean {
-    return this.longUrl.length<5 || this.shortUrl.length<2
+    return this.longUrl.length<5 || this.shortUrl.length<2 || !this.regexShort(String(this.shortUrl));
   }
 
   encurtaURL() {
@@ -50,7 +58,7 @@ export class ContentComponent {
       }
   
       else if(this.longUrl.length>0 && this.shortUrl.length>0 && this.canShort()==true) {
-        this.message = 'Preencha o mínimo de caracteres'
+        this.message = 'Preencha o mínimo de caracteres sem espaços e caracteres especiais'
       }
   
       else if(this.longUrl.length>0 && this.shortUrl.length>0 && this.canShort()==false) {
@@ -70,13 +78,14 @@ export class ContentComponent {
           }
   
           else {
+
             const data = {
-              longUrl: this.longUrl,
-              shortUrl: this.shortUrl
+              longUrl: this.longUrl.trim(),
+              shortUrl: this.shortUrl.trim().replaceAll(/\s/g,'')
             }
             this.firestore.collection('urls').add(data).then(() => {
               console.log('Link '+this.shortUrl+' adicionado!')
-              this.urlGerada = window.location.href+this.shortUrl
+              this.urlGerada = window.location.href+this.shortUrl.trim().replaceAll(/\s/g,'')
               this.longUrl = ''
               this.shortUrl = ''
               this.loading = false
