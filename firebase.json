@@ -1,7 +1,6 @@
 {
   "hosting": {
-    "target": "encurta-me-url",
-    "public": "public",
+    "public": "dist/encurtame",
     "ignore": [
       "firebase.json",
       "**/.*",

@@ -5,9 +5,6 @@
   "targets": {
     "encurta-me-url": {
       "hosting": {
-        "encurta": [
-          "cb8c23"
-        ],
         "encurta-me-url": [
           "encurta"
         ]
