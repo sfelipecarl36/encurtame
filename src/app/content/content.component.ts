@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Component({
@@ -7,6 +7,8 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
   styleUrls: ['./content.component.scss']
 })
 export class ContentComponent {
+
+  @ViewChild('linkgerado') linkgerado!: ElementRef;
 
   message: String = ''
 
@@ -46,6 +48,8 @@ export class ContentComponent {
       this.urlGerada = ''
       const isUrl = require("is-valid-http-url");
   
+      this.linkgerado.nativeElement.style.display = "none";
+
       if(this.longUrl.length==0 && this.shortUrl.length==0) {
         this.message = 'Preencha o formulário'
       }
@@ -80,13 +84,26 @@ export class ContentComponent {
   
           else {
 
+            console.log(this.linkgerado)
+
+            this.linkgerado.nativeElement.style.display = "block";
+            if(this.shortUrl.length>10) {
+              this.linkgerado.nativeElement.style.fontSize = "17px";
+            }
+            else if(this.shortUrl.length<=10 && this.shortUrl.length>=7) {
+              this.linkgerado.nativeElement.style.fontSize = "20px";
+            }
+            if(this.shortUrl.length<7) {
+              this.linkgerado.nativeElement.style.fontSize = "24px";
+            }
+
             const data = {
               longUrl: this.longUrl.trim(),
-              shortUrl: this.shortUrl.trim().replaceAll(/\s/g,'')
+              shortUrl: this.shortUrl.trim().replaceAll(/\s/g,'').toLowerCase()
             }
             this.firestore.collection('urls').add(data).then(() => {
               console.log('Link '+this.shortUrl+' adicionado!')
-              this.urlGerada = window.location.href+this.shortUrl.trim().replaceAll(/\s/g,'')
+              this.urlGerada = window.location.href+this.shortUrl.trim().replaceAll(/\s/g,'').toLowerCase()
               this.longUrl = ''
               this.shortUrl = ''
               this.loading = false

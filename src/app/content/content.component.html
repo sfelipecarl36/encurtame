@@ -20,10 +20,10 @@
     ng-pattern="/^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/"
     [(ngModel)]="shortUrl"
     (keyup.enter)="encurtaURL()"
-    maxlength="35"
+    maxlength="20"
   />
 
-  <h2 (click)="copyUrl()" *ngIf="urlGerada.length">{{urlGerada}}</h2>
+  <h2 (click)="copyUrl()" id="linkgerado" #linkgerado>{{urlGerada}}</h2>
   <h3 *ngIf="message.length">{{message}}</h3>
 
   <div class="card-container">

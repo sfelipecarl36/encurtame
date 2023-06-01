@@ -1,4 +1,15 @@
-<ng-container *ngIf="pageUrl==''">
+<ng-container *ngIf="pageUrl==''; else pagenotfound">
 <app-header></app-header>
 <app-content></app-content>
 </ng-container>
+
+<ng-template #pagenotfound>
+<ng-container *ngIf="notfound==true">
+<app-header></app-header>
+<div class="content-error">
+    <img class="logo" src="../../assets/logoEncurtame.png" alt="logo">
+    <h1>Página não encontrada - 404</h1>
+    <p>Não foi possível encontrar "{{pageUrl}}"</p>
+</div>
+</ng-container>
+</ng-template>
